@@ -50,6 +50,7 @@ BuildRequires:  systemd-devel
 BuildRequires:  systemd
 %{?systemd_requires}
 BuildRequires:  xmlto
+BuildRequires:  libsodium-devel
 BuildRequires:  zeromq-devel
 BuildRequires:  czmq-devel
 BuildRequires:  malamute-devel
@@ -77,6 +78,7 @@ This package contains shared library for fty-outage: agent that sends alerts whe
 Summary:        agent that sends alerts when device does not communicate
 Group:          System/Libraries
 Requires:       libfty_outage1 = %{version}
+Requires:       libsodium-devel
 Requires:       zeromq-devel
 Requires:       czmq-devel
 Requires:       malamute-devel
