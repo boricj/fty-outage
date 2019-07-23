@@ -26,6 +26,7 @@
 
 // it is used as TTL, but in formula we are waiting for ttl*2 ->
 // so if we here would have 15 minutes-> the first alert will come in 30 minutes
+// TODO FIXME this is not respecting shm polling time, so if this gets lower than shm polling time false errors will be published
 #define DEFAULT_ASSET_EXPIRATION_TIME_SEC 15*60/2
 
 #ifdef __cplusplus
