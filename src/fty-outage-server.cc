@@ -917,6 +917,9 @@ fty_outage_server_test (bool verbose)
     assert (streq (fty_proto_state (bmsg), "ACTIVE"));
     fty_proto_destroy (&bmsg);
 
+    fty_shm_delete_test_dir ();
+    assert (fty_shm_set_test_dir ("src/selftest-rw") == 0);
+
     // test case 02 to resolve alert by sending an another metric
     log_debug ("fty-outage: Test #2");
     // expected: RESOLVED alert to be sent
@@ -952,6 +955,9 @@ fty_outage_server_test (bool verbose)
     rv = mlm_client_send (a_sender, "subject",  &sendmsg);
     assert (rv >= 0);
 
+    fty_shm_delete_test_dir ();
+    assert (fty_shm_set_test_dir ("src/selftest-rw") == 0);
+
     // test case 03: add new asset device, wait expiry time and check the alert
     log_debug ("fty-outage: Test #3");
     zhash_t *aux = zhash_new ();
@@ -976,6 +982,9 @@ fty_outage_server_test (bool verbose)
     assert (streq (fty_proto_name (bmsg), "UPS-42"));
     assert (streq (fty_proto_state (bmsg), "ACTIVE"));
     fty_proto_destroy (&bmsg);
+
+    fty_shm_delete_test_dir ();
+    assert (fty_shm_set_test_dir ("src/selftest-rw") == 0);
 
     // test case 04: switch the asset device to maintenance mode, and check that
     // 1) alert switches to RESOLVED
@@ -1034,6 +1043,9 @@ fty_outage_server_test (bool verbose)
     assert (streq (fty_proto_state (bmsg), "ACTIVE"));
     fty_proto_destroy (&bmsg);
     zuuid_destroy (&zuuid);
+
+    fty_shm_delete_test_dir ();
+    assert (fty_shm_set_test_dir ("src/selftest-rw") == 0);
 
     // test case 05: RESOLVE alert when device is retired
     log_debug ("fty-outage: Test #5");
