@@ -90,7 +90,7 @@ s_osrv_send_alert (s_osrv_t* self, const char* source_asset, const char* alert_s
     assert (alert_state);
 
     // publish on SHM as metric
-    int rv = fty::shm::write_metric (source_asset, "outage", streq (alert_state, "ACTIVE") ? "1" : "0", "-",
+    int rv = fty::shm::write_metric (source_asset, OUTAGE_TEXT, streq (alert_state, "ACTIVE") ? "1" : "0", "-",
             (self->timeout_ms / 1000) * 3);
     log_debug ("Metric outage@%s is %s", source_asset, streq (alert_state, "ACTIVE") ? "1" : "0");
 
@@ -445,6 +445,11 @@ metric_processing (fty::shm::shmMetrics& metrics, void* args) {
   s_osrv_t *self = (s_osrv_t *) args;
 
   for (auto &element : metrics) {
+    // ignore outage metrics as they are produced by this agent
+    if (streq (fty_proto_type (element), OUTAGE_TEXT)) {
+        log_debug ("Ignoring outage metric");
+        continue;
+    }
     const char *is_computed = fty_proto_aux_string (element, "x-cm-count", NULL);
     if ( !is_computed ) {
         uint64_t now_sec = zclock_time () / 1000;
