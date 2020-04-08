@@ -2,6 +2,13 @@
 Description=fty-outage service
 After=malamute.service network.target
 Requires=malamute.service network.target
+
+# Enable FLA... once, do not keep retrying if EULA is not accepted yet
+# There are no assets monitored and metrics produced before FLA anyway
+After=fty-license-accepted.target
+Wants=fty-license-accepted.target
+Requisite=fty-license-accepted.target
+
 PartOf=bios.target
 
 [Service]
@@ -17,7 +24,7 @@ EnvironmentFile=-@sysconfdir@/default/bios__%n.conf
 EnvironmentFile=-@sysconfdir@/default/fty
 EnvironmentFile=-@sysconfdir@/default/fty__%n.conf
 Environment="prefix=@prefix@"
-ExecStart=@prefix@/bin/fty-outage @sysconfdir@/@PACKAGE@/fty-outage.cfg
+ExecStart=@prefix@/bin/fty-outage -c @sysconfdir@/@PACKAGE@/fty-outage.cfg
 
 [Install]
 WantedBy=bios.target

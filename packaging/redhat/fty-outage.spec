@@ -1,7 +1,7 @@
 #
 #    fty-outage - Agent that sends alerts when device does not communicate
 #
-#    Copyright (C) 2014 - 2018 Eaton
+#    Copyright (C) 2014 - 2019 Eaton
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ BuildRequires:  libsodium-devel
 BuildRequires:  zeromq-devel
 BuildRequires:  czmq-devel >= 3.0.2
 BuildRequires:  malamute-devel >= 1.0.0
-BuildRequires:  log4cplus-devel
+BuildRequires:  cxxtools-devel
 BuildRequires:  fty-common-logging-devel
 BuildRequires:  fty-common-devel
 BuildRequires:  fty-proto-devel >= 1.0.0
@@ -91,7 +91,7 @@ Requires:       libsodium-devel
 Requires:       zeromq-devel
 Requires:       czmq-devel >= 3.0.2
 Requires:       malamute-devel >= 1.0.0
-Requires:       log4cplus-devel
+Requires:       cxxtools-devel
 Requires:       fty-common-logging-devel
 Requires:       fty-common-devel
 Requires:       fty-proto-devel >= 1.0.0

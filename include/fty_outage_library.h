@@ -1,7 +1,7 @@
 /*  =========================================================================
     fty-outage - generated layer of public API
 
-    Copyright (C) 2014 - 2018 Eaton
+    Copyright (C) 2014 - 2019 Eaton
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
 //  External dependencies
 #include <czmq.h>
 #include <malamute.h>
+#include <cxxtools/allocator.h>
 #include <fty_log.h>
 #include <fty_common.h>
 #include <ftyproto.h>
